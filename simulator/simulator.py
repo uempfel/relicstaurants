@@ -1,13 +1,17 @@
 import time
 import random
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
 
-browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+
+browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 url = "http://localhost:3000/"
 
 while True:
