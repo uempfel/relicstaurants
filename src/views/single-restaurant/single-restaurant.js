@@ -12,9 +12,12 @@ import {
   RestaurantImage,
 } from './single-restaurant.styled';
 
+const APP_URL = process.env.APP_URL || "localhost";
+const APP_PORT = process.env.PORT || 3000;
+
 const getRestaurant = async (id) => {
   const { data } = await axios.get(
-    `http://localhost:3000/api/restaurant/${id}`
+    `http://${APP_URL}:${APP_PORT}/api/restaurant/${id}`
   );
   return data;
 };

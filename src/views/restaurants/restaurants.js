@@ -13,6 +13,10 @@ import {
 } from './elements';
 import { Message } from 'components/common';
 
+const APP_URL = process.env.APP_URL || "localhost";
+const APP_PORT = process.env.PORT || 3000;
+
+
 const Restaurants = () => {
   const [filters, setFilters] = useState({
     rating: 0,
@@ -24,7 +28,7 @@ const Restaurants = () => {
   const [form] = Form.useForm();
 
   const getRestaurants = async () => {
-    const { data } = await axios.get('http://localhost:3000/api/restaurant');
+    const { data } = await axios.get(`http://${APP_URL}:${APP_PORT}/api/restaurant`);
     return data;
   };
   const { data } = useQuery('restaurants', getRestaurants);
