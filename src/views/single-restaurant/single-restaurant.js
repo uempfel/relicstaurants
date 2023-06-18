@@ -17,7 +17,7 @@ const APP_PORT = process.env.PORT || 3000;
 
 const getRestaurant = async (id) => {
   const { data } = await axios.get(
-    `http://${APP_URL}:${APP_PORT}/api/restaurant/${id}`
+    `http://relicrestaurants.uempfel.de/api/restaurant/${id}`
   );
   return data;
 };

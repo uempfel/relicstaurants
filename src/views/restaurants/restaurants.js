@@ -28,7 +28,7 @@ const Restaurants = () => {
   const [form] = Form.useForm();
 
   const getRestaurants = async () => {
-    const { data } = await axios.get(`http://${APP_URL}:${APP_PORT}/api/restaurant`);
+    const { data } = await axios.get(`http://relicrestaurants.uempfel.de/api/restaurant`);
     return data;
   };
   const { data } = useQuery('restaurants', getRestaurants);
