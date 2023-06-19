@@ -60,6 +60,21 @@ exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
 
   app.post(API_URL_ORDER, function(req, res, next) {
     console.log(req.body);
+    var itemName, restaurant;
+    var itemCount = 0;
+    var orderTotal = 0;
+    req.body.forEach(function(item) {
+      itemName = item.name
+      restaurant = item.restaurant
+      itemCount += item.count;
+      orderTotal += item.price * item.count;
+    });
+    newrelic.addCustomAttributes({
+      'itemName': itemName,
+      'restaurant': restaurant,
+      'itemCount': itemCount,
+      'orderTotal': orderTotal
+    });
     return res.status(201).send({ orderId: Date.now()});
   });
 
@@ -67,6 +82,7 @@ exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
     if (req.body.ccnum.length <= 15) {
       let err = new Error('payments.js, cardNumber is invalid');
       newrelic.noticeError(err);
+      console.log(err)
       return res.status(400).send(err);
     }
     return res.status(200).send();
