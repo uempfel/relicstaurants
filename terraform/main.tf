@@ -14,7 +14,7 @@ provider "newrelic" {
 }
 
 resource "newrelic_one_dashboard_json" "json" {
-  for_each = fileset("${path.module}/dashboards", "*") # could use ** instead for a recursive search
+  for_each = fileset("${path.module}/dashboards", "*")
 
   json = file("${path.module}/dashboards/${each.value}")
 }
