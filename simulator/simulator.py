@@ -12,7 +12,7 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")
 
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
-url = "http://localhost:3000/"
+url = "http://relicrestaurants.uempfel.de/"
 
 while True:
     browser.get(url)
